@@ -1,0 +1,35 @@
+{
+  "name": "loglog-server",
+  "version": "1.0.0",
+  "description": "Loglog logging web server",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "mocha": "^1.21.4"
+  },
+  "peerDependencies": {},
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goodybag/loglog-server.git"
+  },
+  "keywords": [
+    "loglog"
+  ],
+  "author": "John Fawcett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goodybag/loglog-server/issues"
+  },
+  "homepage": "https://github.com/goodybag/loglog-server",
+  "dependencies": {
+    "express": "^4.8.7",
+    "loglog": "^0.1.5"
+  }
+}
