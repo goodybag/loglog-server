@@ -5,7 +5,7 @@
 __Install:__
 
 ```
-npm install -g loglog-server
+npm install loglog-server
 ```
 
 __Usage:__
@@ -51,5 +51,38 @@ Returns the URL for a given query object. If no query object is returned, uses t
 ## How it works
 
 ## Loglog Server Data Sources
+
+A loglog server uses data sources to get logging data from your applications. A source consists of two functions:
+
+* Initialize ```function( options ){ ... }``` returns the ```query` function
+* Query ```function( query, callback( error, results ) )```
+
+Here's what an imaginary source looks like:
+
+```javascript
+var db = require('db');
+
+module.exports = function( options ){
+  return function( query, callback ){
+    db.connect( options.connStr, function( error, client ){
+      if ( error ) return callback( error );
+
+      // Ensure we're querying from the configured table
+      query.table = options.sourceTable;
+
+      // Parse the query object somehow
+      /* ... */
+
+      client.query( parsedQueryStr, parsedQueryValues, function( error, result ){
+        if ( error ) return callback( error );
+
+        return callback( null, result.rows );
+      });
+    });
+  };
+};
+```
+
+It is completely up to the data source on how to parse the parameter to the query function. If the data source simply wants to be passed a string, then that is fine.
 
 ## Using as a module

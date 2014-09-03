@@ -16,7 +16,7 @@ module.exports = function( grunt ){
 
   , jshint: {
       // define the files to lint
-      all: ['*.js', 'lib/*.js', 'lib/**/*.js', 'public/js/*.js'],
+      all: ['*.js', 'lib/*.js', 'public/js/*.js', 'test/*.js'],
       options: {
         ignores: ['node_modules'],
         laxcomma: true,

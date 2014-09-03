@@ -9,6 +9,8 @@
   "devDependencies": {
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
+    "loglog": "^0.1.5",
+    "loglog-mongodb": "^1.0.1",
     "mocha": "^1.21.4"
   },
   "peerDependencies": {},
@@ -29,7 +31,12 @@
   },
   "homepage": "https://github.com/goodybag/loglog-server",
   "dependencies": {
+    "body-parser": "^1.7.0",
+    "commander": "^2.3.0",
     "express": "^4.8.7",
-    "loglog": "^0.1.5"
+    "loglog": "^0.1.5",
+    "loglog-dev-tools": "^1.0.4",
+    "method-override": "^2.1.3",
+    "nunjucks": "^1.0.7"
   }
 }
