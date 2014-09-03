@@ -9,9 +9,11 @@ app.socket.on( 'result', onResult );
 
 function pauseRealtime(){
   app.isPaused = true;
+  app.socket.off( 'entry', onEntry );
 }
 
 function resumeRealtime(){
+  app.socket.on( 'entry', onEntry );
   app.isPaused = false;
 }
 
