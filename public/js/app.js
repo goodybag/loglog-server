@@ -1,6 +1,7 @@
 var app = {
-  isPaused: false
-, socket:   io.connect( config.url )
+  isPaused:   false
+, socket:     io.connect( config.url )
+, transport:  loglogDevTools()
 };
 
 app.socket.on( 'entry', onEntry );
@@ -16,10 +17,21 @@ function resumeRealtime(){
 
 function query( qObj ){
   pauseRealtime();
-  clear();
+  console.clear();
 
   app.lastQuery = qObj;
-  app.socket.emit( 'query', qObj );
+  reqwest({
+    url: '/api/entries?q=' + encodeURIComponent( JSON.stringify( qObj ) )
+  , method: 'get'
+  , type: 'json'
+  , contentType: 'application/json'
+  , success: function( res ){
+      res.forEach( onResult );
+    }
+  , error: function( error ){
+      console.error( res );
+    }
+  });
 
   return getUrl( qObj );
 }
@@ -32,10 +44,9 @@ function getUrl( qObj ){
 
 function onEntry( entry ){
   if ( app.isPaused ) return;
-
-  loglogDevTools( entry );
+  app.transport( entry );
 }
 
 function onResult( entry ){
-  loglogDevTools( entry );
+  app.transport( entry );
 }

@@ -15,6 +15,7 @@ app.set( 'port', 8001 );
 
 app.listen( app.get('port'), function( ){
   console.log( 'Open http://localhost:' + app.get('port') );
+
   setInterval(
     require('../lib/random-log-entry').bind( null, logger )
   , 1000
