@@ -24,6 +24,10 @@ server.set( 'source', server.sources.mongodb({
 , collection: 'collection_that_stores_logs'
 }));
 
+// Need to set url to inform socket.io what to connect to
+server.set( 'url', 'https://myhost.com' );
+
+// Listen on port 80
 server.listen();
 ```
 
