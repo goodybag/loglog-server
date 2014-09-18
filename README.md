@@ -13,7 +13,8 @@ __Usage:__
 You need to setup your own loglog server to execute with node. The `loglog-server` module simply exposes an express app.
 
 ```javascript
-var server = require('loglog-server');
+var server  = require('loglog-server');
+var auth    = require('http-auth');
 
 // It's necessary to have your datasource set before any requests
 // are fulfilled
@@ -26,6 +27,12 @@ server.set( 'source', server.sources.mongodb({
 
 // Need to set url to inform socket.io what to connect to
 server.set( 'url', 'https://myhost.com' );
+
+// Custom authentication?
+server.set( 'auth', auth.connect( auth.basic({
+  realm: "Simon Area.",
+  file: __dirname + "/../.htpasswd"
+})));
 
 // Listen on port 80
 server.listen();
