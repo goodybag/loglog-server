@@ -2,5 +2,6 @@
   "mongodb": {
     "connection": "mongodb://localhost/my_test"
   , "collection": "test_collection"
+  , "collectionOptions": {}
   }
 }
